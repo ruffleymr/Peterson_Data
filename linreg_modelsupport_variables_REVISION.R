@@ -1,11 +1,8 @@
 setwd("~/Documents/Peterson_Data/")
 getwd()
 
-Kipukalm <- read.csv("ModelSupport_20Kipukas.csv", header=TRUE)[,-1]
+Kipukalm <- read.csv("AppendixS4.csv", header=TRUE)[,-1]
 head(Kipukalm)
-
-disp_Kip<- read.csv(file="DispersionPvalues_20Kipukas.csv", header =T)
-head(disp_Kip)
 
 #head(Kipukalm[-2,])
 #remove outlier 
@@ -21,6 +18,7 @@ head(disp_Kip)
 #summary(lm2)
 #scatter.smooth(x=Kipukalm[-4,]$distanceout, y=Kipukalm[-4,]$comp, main="Comp ~ distanceout", col="dimgray", pch=16) 
 
+
 lm3 <- lm(formula = comp ~ elevationm, data = Kipukalm)
 print(lm3)
 summary(lm3)
@@ -34,6 +32,33 @@ summary(lm4)
 scatter.smooth(x=Kipukalm$spprichness, y=Kipukalm$comp, main="Comp ~ spprichness",col = "dimgray", pch=16) 
 plot(Kipukalm$spprichness, Kipukalm$comp, main="Comp ~ spprichness", col="dimgray", pch=16)
 abline(lm(Kipukalm$comp ~ Kipukalm$spprichness))
+
+## Test for interactions
+lm3_1 <- lm(formula = comp ~ elevationm * areaHA, data = Kipukalm)
+print(lm3_1)
+summary(lm3_1)
+
+lm3_2 <- lm(formula = comp ~ elevationm * distanceout, data = Kipukalm)
+print(lm3_2)
+summary(lm3_2)
+
+lm3_3 <- lm(formula = comp ~ elevationm *spprichness , data = Kipukalm)
+print(lm3_3)
+summary(lm3_3)
+
+## stil just spprichness is significant
+lm3_4 <- lm(formula = comp ~ areaHA *spprichness , data = Kipukalm)
+print(lm3_4)
+summary(lm3_4)
+
+lm3_5 <- lm(formula = comp ~ areaHA *distanceout , data = Kipukalm)
+print(lm3_5)
+summary(lm3_5)
+
+lm3_6 <- lm(formula = comp ~ spprichness *distanceout , data = Kipukalm)
+print(lm3_6)
+summary(lm3_6)
+
 
 #lm5 <- lm(formula = areaHA ~ filt, data = Kipukalm)
 #print(lm5)
@@ -61,6 +86,34 @@ summary(lm8)
 plot(Kipukalm$spprichness, Kipukalm$filt, main="Filt ~ spprichness", col="dimgray", pch=16)
 abline(lm(Kipukalm$filt ~ Kipukalm$spprichness))
 
+## Test for interactions
+lm7_1 <- lm(formula = filt ~ elevationm * areaHA, data = Kipukalm)
+print(lm7_1)
+summary(lm7_1)
+
+## elevation already signifcant
+lm7_2 <- lm(formula = filt ~ elevationm * distanceout, data = Kipukalm)
+print(lm7_2)
+summary(lm7_2)
+
+lm7_3 <- lm(formula = filt ~ elevationm *spprichness , data = Kipukalm)
+print(lm7_3)
+summary(lm7_3)
+
+## stil just spprichness is significant
+lm7_4 <- lm(formula = filt ~ areaHA *spprichness , data = Kipukalm)
+print(lm7_4)
+summary(lm7_4)
+
+lm7_5 <- lm(formula = filt ~ areaHA *distanceout , data = Kipukalm)
+print(lm7_5)
+summary(lm7_5)
+
+lm7_6 <- lm(formula = filt ~ spprichness *distanceout , data = Kipukalm)
+print(lm7_6)
+summary(lm7_6)
+
+
 #lm9 <- lm(formula = areaHA ~ neut, data = Kipukalm)
 #print(lm9)
 #summary(lm9)
@@ -87,6 +140,30 @@ scatter.smooth(x=Kipukalm$spprichness, y=Kipukalm$neut, main="Neut ~ spprichness
 plot(Kipukalm$spprichness, Kipukalm$neut, main="Neut ~ spprichness", col="dimgray", pch=16)
 abline(lm(Kipukalm$neut ~ Kipukalm$spprichness))
 
+## Test for interactions
+lm7_1 <- lm(formula = neut ~ elevationm * areaHA, data = Kipukalm)
+print(lm7_1)
+summary(lm7_1)
+
+lm7_2 <- lm(formula = neut ~ elevationm * distanceout, data = Kipukalm)
+print(lm7_2)
+summary(lm7_2)
+
+lm7_3 <- lm(formula = neut ~ elevationm *spprichness , data = Kipukalm)
+print(lm7_3)
+summary(lm7_3)
+
+lm7_4 <- lm(formula = neut ~ areaHA *spprichness , data = Kipukalm)
+print(lm7_4)
+summary(lm7_4)
+
+lm7_5 <- lm(formula = neut ~ areaHA *distanceout , data = Kipukalm)
+print(lm7_5)
+summary(lm7_5)
+
+lm7_6 <- lm(formula = neut ~ spprichness *distanceout , data = Kipukalm)
+print(lm7_6)
+summary(lm7_6)
 
 #-------------
 # Multiple Linear Regression Example 
